@@ -29,7 +29,7 @@ def scores(clf_name, prediction, metodo, target_test, file, split_number, output
         line += f"{recall_score(target_test, prediction, average='macro')},"
         line += f"{precision_score(target_test, prediction, average='macro')}\n"
         out_file.writelines(line)
-dir = 'features/'
+dir = 'datasets/'
 output = 'output.csv'
 with open(output, 'wt') as out_file: 
         out_file.writelines('\"Descrição\",\"Acurácia\",\"F1-Score\",\"Recall\",\"Precisão\",\"MCC\"\n')
