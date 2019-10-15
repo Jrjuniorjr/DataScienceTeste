@@ -1,3 +1,13 @@
+@relation mammographic
+@attribute BI-RADS integer [0,55]
+@attribute Age integer [18,96]
+@attribute Shape integer [1,4]
+@attribute Margin integer [1,5]
+@attribute Density integer [1,4]
+@attribute Severity {0, 1}
+@inputs BI-RADS, Age, Shape, Margin, Density
+@outputs Severity
+@data
 5,67,3,5,3,1
 5,58,4,5,3,1
 4,28,1,1,3,0

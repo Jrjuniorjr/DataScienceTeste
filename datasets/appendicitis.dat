@@ -1,3 +1,15 @@
+@relation appendicitis
+@attribute At1 real[0.0,1.0]
+@attribute At2 real[0.0,1.0]
+@attribute At3 real[0.0,1.0]
+@attribute At4 real[0.0,1.0]
+@attribute At5 real[0.0,1.0]
+@attribute At6 real[0.0,1.0]
+@attribute At7 real[0.0,1.0]
+@attribute Class {0,1}
+@inputs At1, At2, At3, At4, At5, At6, At7
+@outputs Class
+@data
 0.213,0.554,0.207,0.0,0.0,0.749,0.22,1
 0.458,0.714,0.468,0.111,0.102,0.741,0.436,1
 0.102,0.518,0.111,0.056,0.022,0.506,0.086,1

@@ -1,3 +1,68 @@
+@relation splice
+@attribute POS1 {G, C, A, T, D}
+@attribute POS2 {C, G, A, T, D}
+@attribute POS3 {C, G, T, A}
+@attribute POS4 {C, G, A, T}
+@attribute POS5 {C, T, A, G}
+@attribute POS6 {C, G, T, A}
+@attribute POS7 {C, A, G, T}
+@attribute POS8 {C, T, A, G}
+@attribute POS9 {C, T, G, A}
+@attribute POS10 {T, C, A, G}
+@attribute POS11 {T, C, G, A}
+@attribute POS12 {C, G, T, A}
+@attribute POS13 {C, T, G, A}
+@attribute POS14 {C, A, T, G, N}
+@attribute POS15 {C, T, G, A}
+@attribute POS16 {C, T, A, G}
+@attribute POS17 {T, C, G, A}
+@attribute POS18 {T, C, G, A}
+@attribute POS19 {C, T, G, A, N}
+@attribute POS20 {T, C, A, G, N}
+@attribute POS21 {C, T, G, A, N}
+@attribute POS22 {C, T, G, A, N}
+@attribute POS23 {C, T, G, A, N}
+@attribute POS24 {C, T, G, A, N}
+@attribute POS25 {C, T, G, A, N}
+@attribute POS26 {T, C, A, G, N}
+@attribute POS27 {C, G, A, T, N}
+@attribute POS28 {C, A, T, G, N}
+@attribute POS29 {A, C, G, T, N}
+@attribute POS30 {G, A, T, C, N}
+@attribute POS31 {G, A, C, T, N}
+@attribute POS32 {T, A, C, G, N}
+@attribute POS33 {A, G, C, T, N}
+@attribute POS34 {A, G, C, T, N}
+@attribute POS35 {G, C, T, A, N, R}
+@attribute POS36 {T, C, G, A, N, S}
+@attribute POS37 {G, A, C, T, N}
+@attribute POS38 {C, G, A, T, N}
+@attribute POS39 {C, G, T, A, N}
+@attribute POS40 {G, C, T, A, N}
+@attribute POS41 {G, C, T, A, N}
+@attribute POS42 {G, C, T, A, N}
+@attribute POS43 {G, C, A, T, N}
+@attribute POS44 {C, G, T, A, N}
+@attribute POS45 {C, G, A, T, N}
+@attribute POS46 {G, C, A, T, N}
+@attribute POS47 {G, T, C, A, N}
+@attribute POS48 {G, C, A, T, N}
+@attribute POS49 {G, C, A, T, N}
+@attribute POS50 {G, C, A, T, N}
+@attribute POS51 {G, C, T, A, N}
+@attribute POS52 {G, A, C, T, N}
+@attribute POS53 {G, C, T, A, N}
+@attribute POS54 {G, C, T, A, N}
+@attribute POS55 {G, C, A, T, N}
+@attribute POS56 {G, C, T, A, N}
+@attribute POS57 {G, C, T, A, N}
+@attribute POS58 {C, G, T, A, N}
+@attribute POS59 {C, G, A, T, N}
+@attribute POS60 {G, C, T, A, N}
+@attribute Class {EI, IE, N}
+@inputs POS1, POS2, POS3, POS4, POS5, POS6, POS7, POS8, POS9, POS10, POS11, POS12, POS13, POS14, POS15, POS16, POS17, POS18, POS19, POS20, POS21, POS22, POS23, POS24, POS25, POS26, POS27, POS28, POS29, POS30, POS31, POS32, POS33, POS34, POS35, POS36, POS37, POS38, POS39, POS40, POS41, POS42, POS43, POS44, POS45, POS46, POS47, POS48, POS49, POS50, POS51, POS52, POS53, POS54, POS55, POS56, POS57, POS58, POS59, POS60
+@outputs Class
+@data
 A, G, A, C, C, C, G, C, C, G, G, G, A, G, G, C, G, G, A, G, G, A, C, C, T, G, C, A, G, G, G, T, G, A, G, C, C, C, C, A, C, C, G, C, C, C, C, T, C, C, G, T, G, C, C, C, C, C, G, C, EI
 G, A, G, G, T, G, A, A, G, G, A, C, G, T, C, C, T, T, C, C, C, C, A, G, G, A, G, C, C, G, G, T, G, A, G, A, A, G, C, G, C, A, G, T, C, G, G, G, G, G, C, A, C, G, G, G, G, A, T, G, EI
 G, G, G, C, T, G, C, G, T, T, G, C, T, G, G, T, C, A, C, A, T, T, C, C, T, G, G, C, A, G, G, T, A, T, G, G, G, G, C, G, G, G, G, C, T, T, G, C, T, C, G, G, T, T, T, T, C, C, C, C, EI

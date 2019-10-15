@@ -1,3 +1,16 @@
+@relation pima
+@attribute Preg real [0.0, 17.0]
+@attribute Plas real [0.0, 199.0]
+@attribute Pres real [0.0, 122.0]
+@attribute Skin real [0.0, 99.0]
+@attribute Insu real [0.0, 846.0]
+@attribute Mass real [0.0, 67.1]
+@attribute Pedi real [0.078, 2.42]
+@attribute Age real [21.0, 81.0]
+@attribute Class {tested_negative, tested_positive}
+@inputs Preg, Plas, Pres, Skin, Insu, Mass, Pedi, Age
+@outputs Class
+@data
 14,175,62,30,0,33.6,0.212,38,tested_positive
 4,146,78,0,0,38.5,0.52,67,tested_positive
 15,136,70,32,110,37.1,0.153,43,tested_positive

@@ -1,3 +1,24 @@
+@relation penbased
+@Attribute At1 integer [0, 100]
+@Attribute At2 integer [0, 100]
+@Attribute At3 integer [0, 100]
+@Attribute At4 integer [0, 100]
+@Attribute At5 integer [0, 100]
+@Attribute At6 integer [0, 100]
+@Attribute At7 integer [0, 100]
+@Attribute At8 integer [0, 100]
+@Attribute At9 integer [0, 100]
+@Attribute At10 integer [0, 100]
+@Attribute At11 integer [0, 100]
+@Attribute At12 integer [0, 100]
+@Attribute At13 integer [0, 100]
+@Attribute At14 integer [0, 100]
+@Attribute At15 integer [0, 100]
+@Attribute At16 integer [0, 100]
+@Attribute Class {0,1,2,3,4,5,6,7,8,9}
+@inputs At1, At2, At3, At4, At5, At6, At7, At8, At9, At10, At11, At12, At13, At14, At15, At16
+@outputs Class
+@data
 47, 100, 27, 81, 57, 37, 26, 0, 0, 23, 56, 53, 100, 90, 40, 98, 8
 0, 89, 27, 100, 42, 75, 29, 45, 15, 15, 37, 0, 69, 2, 100, 6, 2
 0, 57, 31, 68, 72, 90, 100, 100, 76, 75, 50, 51, 28, 25, 16, 0, 1

@@ -1,3 +1,14 @@
+@relation car
+@attribute Buying {vhigh,high,med,low}
+@attribute Maint {vhigh,high,med,low}
+@attribute Doors {2,3,4,5more}
+@attribute Persons {2,4,more}
+@attribute Lug_boot {small,med,big}
+@attribute Safety {low,med,high}
+@attribute Acceptability {unacc,acc,vgood,good}
+@inputs Buying, Maint, Doors, Persons, Lug_boot, Safety
+@output Acceptability
+@data
 vhigh,vhigh,2,2,small,low,unacc
 vhigh,vhigh,2,2,small,med,unacc
 vhigh,vhigh,2,2,small,high,unacc

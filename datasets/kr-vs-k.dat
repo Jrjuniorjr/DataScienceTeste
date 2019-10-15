@@ -1,3 +1,14 @@
+@relation kr-vs-k
+@attribute White_king_col {a, b, c, d, e, f, g, h}
+@attribute White_king_row {1, 2, 3, 4, 5, 6, 7, 8}
+@attribute White_rook_col {a, b, c, d, e, f, g, h}
+@attribute White_rook_row {1, 2, 3, 4, 5, 6, 7, 8}
+@attribute Black_king_col {a, b, c, d, e, f, g, h}
+@attribute Black_king_row {1, 2, 3, 4, 5, 6, 7, 8}
+@attribute Game {draw, zero, one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen}
+@inputs White_king_col, White_king_row, White_rook_col, White_rook_row, Black_king_col, Black_king_row
+@outputs Game
+@data
 a,1,b,3,c,2,draw
 a,1,c,1,c,2,draw
 a,1,c,1,d,1,draw
