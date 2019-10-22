@@ -1,18 +1,21 @@
-#alo
-
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import Normalizer
+from sklearn.linear_model import Perceptron
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import recall_score
 from sklearn.metrics import f1_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import matthews_corrcoef
-from sklearn.neural_network import MLPClassifier
+from sklearn.tree import DecisionTreeClassifier 
+from sklearn.metrics import confusion_matrix
+import os
+
 
 from os import listdir
+
 
 import warnings
 def warn(*args, **kwargs):
@@ -20,9 +23,9 @@ def warn(*args, **kwargs):
 
 warnings.warn = warn
 
-def scores(clf_name, prediction, metodo, target_test, file, split_number, output):
+def scores(clf_name, prediction, metodo, target_test, file, split_number, iteracao, output):
     with open(output, 'at') as out_file:
-        line = f"\"{file} , {clf_name} , {metodo} , Split # {split_number}\","
+        line = f"\"{file} , {clf_name} , {metodo} , Split # {split_number} , Treino # {iteracao}\","
         line += f"{accuracy_score(target_test, prediction)},"
         line += f"{matthews_corrcoef(target_test, prediction)},"
         line += f"{f1_score(target_test, prediction,average='macro')},"
@@ -37,6 +40,7 @@ with open(output, 'wt') as out_file:
 
 names=[]
 for file in listdir(dir):
+    fileName = os.path.splitext(file)[0]
     names.clear()
     print(f"---{dir + file}---")
     with open(dir +file, 'rt') as in_file:
@@ -52,48 +56,51 @@ for file in listdir(dir):
     encoder = LabelEncoder()
     data = data.apply(encoder.fit_transform)
     ultimaColuna = len(names) - 1
-    
+    stateValue = 42
     ft = data.iloc[:, 0:ultimaColuna]
-    tg = data.iloc[:,-1]
-    vetor_epoca = [50,100,500]
-   
+    tg = data.iloc[:,-1]  
+    ft_train, ft_test, tg_train, tg_test = train_test_split(ft, tg,train_size=0.75, stratify =tg, random_state=stateValue)
+    ft_train, ft_valid, tg_train, tg_valid = train_test_split(ft_train, tg_train,train_size=0.9,stratify =tg_train,random_state=stateValue)
+        
+    s = StandardScaler()
+    padr_ft_train = s.fit_transform(ft_train)
+    padr_ft_test = s.transform(ft_test)
+        
+    n = Normalizer()
+    norm_ft_train = n.fit_transform(ft_train)       
+    norm_ft_test = n.transform(ft_test)
+    print("iniciando PERCEPTRON")
+    percep = Perceptron(max_iter=10, random_state=0 ,eta0=0.1, n_jobs=-1)
+    percep.fit(norm_ft_train, tg_train)
+    norm_prediction = percep.predict(norm_ft_test)
+    matriz = confusion_matrix(norm_ft_test, norm_prediction)
+    matriz.save_csv("MatrizesConfusao/" + fileName + "Normalizado.csv")
+    scores("Perceptron", norm_prediction, "Normalizado", tg_test, file, stateValue, 0, output)
+            
+    percep = Perceptron(max_iter=10, random_state=0 ,eta0=0.1, n_jobs=-1)
+    percep.fit(padr_ft_train, tg_train)
+    padr_prediction = percep.predict(padr_ft_test)
+    matriz = confusion_matrix(padr_ft_test, padr_prediction)
+    matriz.save_csv("MatrizesConfusao/" + fileName + "Padronizado.csv")
+    scores("Perceptron", padr_prediction, "Padronizado", tg_test, file, stateValue, 0, output)
+    print("saindo do PERCEPTRON")
+            
+    print("iniciando ARVORE DE DECISOES")
+    dt = DecisionTreeClassifier(random_state=0)
+    dt.fit(norm_ft_train, tg_train)
+    norm_prediction = dt.predict(norm_ft_test)
+    matriz = confusion_matrix(norm_ft_test, norm_prediction)
+    matriz.save_csv("MatrizesConfusao/" + fileName + "Normalizado.csv")
+    scores("Decision Tree", norm_prediction, "Normalizado", tg_test, file, stateValue, 0, output)
+
+
+    dt = DecisionTreeClassifier(random_state=0)
+    dt.fit(padr_ft_train, tg_train)
+    padr_prediction = dt.predict(padr_ft_test)
+    matriz = confusion_matrix(padr_ft_test, padr_prediction)
+    matriz.save_csv("MatrizesConfusao/" + fileName + "Padronizado.csv")
+    scores("Decision Tree", padr_prediction, "Padronizado", tg_test, file, stateValue, 0, output)
+    print("saindo da arvore de decisoes")
     
-    vetor_taxa_de_aprendizado= [0.01,0.001]
-    vetor_nCamadasEscondidas = [(10,),(50,),(100,),(10,10),(50,10),(100,10)]
-    
-    print("entrando no for 5")
-    for i in range(5):
-        ft_train, ft_test, tg_train, tg_test = train_test_split(ft, tg,train_size=0.75, stratify =tg, random_state=i)
-        ft_train, ft_valid, tg_train, tg_valid = train_test_split(ft_train, tg_train,train_size=0.9,stratify =tg_train,random_state=i+1000)
-        
-        s = StandardScaler()
-        padr_ft_train = s.fit_transform(ft_train)
-        padr_ft_test = s.transform(ft_test)
-        
-        n = Normalizer()
-        norm_ft_train = n.fit_transform(ft_train)
-        norm_ft_test = n.transform(ft_test)
-        
-        print("vetor_epoca")
-        for epoca in vetor_epoca:
-            print("vetor_taxa_de_aprendizado")
-            print("x= ",epoca)
-            for taxa_de_aprendizado in vetor_taxa_de_aprendizado:
-                print("entrando no for vetor_ncamadasEscondidas")
-                print("y",taxa_de_aprendizado)
-                for nCamadasEscondidas in vetor_nCamadasEscondidas:
-                    print("z",nCamadasEscondidas)
-                    print(file)
-                    print("iniciando MLP")
-                    mlp = MLPClassifier(batch_size='auto',learning_rate_init=taxa_de_aprendizado, hidden_layer_sizes=(nCamadasEscondidas), max_iter=epoca)
-                    features_r = mlp.fit(padr_ft_train, tg_train)
-                    padr_prediction = mlp.predict(padr_ft_test) 
-                    scores("MlP", padr_prediction, "Padronizado", tg_test, file, i, output)
-                    
-                    mlp = MLPClassifier(batch_size='auto',learning_rate_init=taxa_de_aprendizado, hidden_layer_sizes=(nCamadasEscondidas), max_iter=epoca)
-                    features_r = mlp.fit(norm_ft_train, tg_train)
-                    norm_prediction = mlp.predict(norm_ft_test) 
-                    scores("MLP", norm_prediction, "Normalizado", tg_test, file, i, output)
-                    print("saindo do MLP")
-                    print("repeticao n: ", i,"de 5")
+
 print("fim")
